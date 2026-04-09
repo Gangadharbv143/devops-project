@@ -1,25 +1,15 @@
 pipeline {
     agent any
-
     stages {
-
-        stage('Clone Repo') {
+        stage('Checkout') {
             steps {
-                git 'https://github.com/Gangadharbv143/devops-project.git'
+                git branch: 'main', url: 'https://github.com/Gangadharbv143/devops-project.git'
             }
         }
-
-        stage('Build Docker Image') {
+        stage('Print Files') {
             steps {
-                sh 'docker build -t flask-devops-app .'
+                sh 'ls -la'
             }
         }
-
-        stage('Run Container') {
-            steps {
-                sh 'docker run -d -p 5000:5000 flask-devops-app'
-            }
-        }
-
     }
 }
